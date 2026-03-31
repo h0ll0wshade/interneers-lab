@@ -1,5 +1,6 @@
 from .models import Product, ProductCategory
 import json
+from bson.objectid import ObjectId
 
 class CategoryRepository:
     def create(self, data):
@@ -23,15 +24,18 @@ class ProductRepository:
         products = Product.objects(category=category_id)
         return json.loads(products.to_json())
 
-    def update_category(self, product_id, category_id):
+    def update_category(self, product_id, category_id): 
         product = Product.objects(id=product_id).first()
         if product:
-            # Set the reference to the new category, or None to remove it
-            product.category = category_id 
+            # If category_id exists, convert it to an ObjectId. Otherwise, set to None.
+            if category_id:
+                product.category = ObjectId(category_id)
+            else:
+                product.category = None
+                
             product.save()
             return True
         return False
-
     def bulk_insert(self, product_objects):
         # MongoEngine's way to do a single, fast bulk insert
         Product.objects.insert(product_objects)
