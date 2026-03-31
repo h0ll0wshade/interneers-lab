@@ -59,6 +59,6 @@ class ProductService:
 
         # If we loop through the whole CSV and no ValueError is raised, bulk save them all
         if products_to_insert:
-            self.repository.bulk_insert(products_to_insert)
-            return len(products_to_insert)
+            saved_products = self.repository.bulk_insert(products_to_insert)
+            return saved_products
         return 0

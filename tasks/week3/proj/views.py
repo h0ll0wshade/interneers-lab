@@ -77,19 +77,33 @@ class ProductCategoryUpdateAPI(APIView):
         return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class BulkProductUploadAPI(APIView):
-    # Requirement 6: Bulk upload via CSV
     def post(self, request):
         file = request.FILES.get('file')
         if not file:
             return Response({"error": "No file provided"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            count = prod_service.process_bulk_csv(file)
-            return Response({"message": f"Successfully created {count} products"}, status=status.HTTP_201_CREATED)
+            products = prod_service.process_bulk_csv(file)
+            
+            # Manually create a list of dictionaries with string IDs
+            response_data = []
+            for p in products:
+                response_data.append({
+                    "id": str(p.id),
+                    "name": p.name,
+                    "brand": p.brand,
+                    "price": p.price
+                })
+                
+            return Response({
+                "message": f"Successfully created {len(products)} products",
+                "products": response_data
+            }, status=status.HTTP_201_CREATED)
+            
         except ValueError as e:
-            # If the service raises a ValueError (like a missing brand), return a 400 Bad Request
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
+                
 class CategoryDetailAPI(APIView):
     # Requirement 3: Delete a category
     def delete(self, request, category_id):
