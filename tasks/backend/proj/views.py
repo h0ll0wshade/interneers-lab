@@ -64,6 +64,13 @@ class ProductAPI(APIView):
         products = prod_service.get_all_products()
         return Response(products, status=status.HTTP_200_OK)
 
+class ProductUpdateAPI(APIView):
+    def delete(self, request, product_id):
+        success = prod_service.delete_product(product_id)
+        if success:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"error": "Category not found"}, status=status.HTTP_404_NOT_FOUND)        
+
 class CategoryProductsAPI(APIView):
     # Requirement 3: Fetch products for a category
     def get(self, request, category_id):

@@ -43,3 +43,10 @@ class ProductRepository:
     
     def get_products(self):
         return json.loads(Product.objects.all().to_json())
+    
+    def delete(self, product_id):
+        product = Product.objects(id = product_id).first()
+        if(product):
+            product.delete()
+            return True
+        return False

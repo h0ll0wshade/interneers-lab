@@ -6,6 +6,7 @@ from .views import (
     BulkProductUploadAPI,
     CategoryDetailAPI,
     ProductAPI,
+    ProductUpdateAPI
 )
 
 urlpatterns = [
@@ -15,7 +16,7 @@ urlpatterns = [
 
     # get/del all products
     path('products/', ProductAPI.as_view(), name='products'),
-    # path('products/<str:product_id>/', ProductUpdateAPI.as_view(), name='products'),
+    path('products/<str:product_id>/', ProductUpdateAPI.as_view(), name='products'),
 
     #Fetch products belonging to a category
     path('categories/<str:category_id>/products/', CategoryProductsAPI.as_view(), name='category-products'),

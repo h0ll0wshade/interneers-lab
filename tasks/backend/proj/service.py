@@ -29,6 +29,9 @@ class ProductService:
 
     def get_all_products(self):
         return self.repository.get_products()
+    
+    def delete_product(self, product_id):
+        return self.repository.delete(product_id)
 
     def get_products_by_category(self, category_id):
         return self.repository.get_by_category(category_id)
