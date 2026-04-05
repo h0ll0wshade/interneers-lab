@@ -40,3 +40,6 @@ class ProductRepository:
     def bulk_insert(self, product_objects):
         # Returning the result of .insert() gives you the objects with IDs attached
         return Product.objects.insert(product_objects)
+    
+    def get_products(self):
+        return json.loads(Product.objects.all().to_json())

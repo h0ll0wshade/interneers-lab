@@ -59,6 +59,11 @@ class CategoryAPI(APIView):
         categories = cat_service.get_all_categories()
         return Response(categories, status=status.HTTP_200_OK)
 
+class ProductAPI(APIView):
+    def get(self, request):
+        products = prod_service.get_all_products()
+        return Response(products, status=status.HTTP_200_OK)
+
 class CategoryProductsAPI(APIView):
     # Requirement 3: Fetch products for a category
     def get(self, request, category_id):

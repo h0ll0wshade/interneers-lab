@@ -1,0 +1,29 @@
+/* Basic reset to make things look clean */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+/* Task 2: Style the Product Tile */
+.product-tile {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space INSIDE the border */
+    margin-bottom: 20px; /* Space OUTSIDE the border */
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* A nice subtle drop shadow */
+}
+
+.product-name {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #27ae60; /* Green money color */
+    font-size: 1.2rem;
+}

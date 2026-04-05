@@ -27,6 +27,9 @@ class ProductService:
     def __init__(self, repository):
         self.repository = repository
 
+    def get_all_products(self):
+        return self.repository.get_products()
+
     def get_products_by_category(self, category_id):
         return self.repository.get_by_category(category_id)
 
