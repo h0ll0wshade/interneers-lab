@@ -1,0 +1,12 @@
+asgiref==3.11.1
+Django==6.0.3
+django-cors-headers==4.9.0
+djangorestframework==3.17.1
+dnspython==2.8.0
+mongoengine==0.29.3
+mongomock==4.3.0
+packaging==26.0
+pymongo==4.16.0
+pytz==2026.1.post1
+sentinels==1.1.1
+sqlparse==0.5.5
