@@ -89,6 +89,8 @@ class ProductCategoryUpdateAPI(APIView):
         return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class BulkProductUploadAPI(APIView):
+    # def post(self, request):
+    #     return Response({"message": "I AM ALIVE!"}, status=200)
     def post(self, request):
         file = request.FILES.get('file')
         if not file:
